@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<property name="rootPath" value="F:/log/loan/" /> 
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%d] [%thread] %-5level %logger{20} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="debugFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${rootPath}debug.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${rootPath}debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d] [%thread] %-5level %logger{20} - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="infoFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${rootPath}info.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${rootPath}info.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d] [%thread] %-5level %logger{20} - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${rootPath}error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${rootPath}error.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d] [%thread] %-5level %logger{20} - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+	<appender name="userFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${rootPath}userAction.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${rootPath}userAction.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d] [%thread] %-5level %logger{20} - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>warn</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	
+	<logger name="org.springframework" 		level="INFO" 	additivity="false" /> 
+	<logger name="org.mybatis.spring" 		level="INFO" 	additivity="false" />
+	<logger name="org.apache.ibatis" 		level="INFO" 	additivity="false" />
+	<logger name="com.cy.advert.dao" 		level="INFO" 	additivity="false" />
+	<logger name="mybatisSql" 				level="INFO" 	additivity="false" />
+	<logger name="org.apache.http.client" 	level="INFO" 	additivity="false" />
+	<logger name="org.apache.http.impl" 	level="INFO" 	additivity="false" />
+	<logger name="org.apache.http.headers" 	level="INFO" 	additivity="false" />
+	<logger name="org.apache.http.wire" 	level="INFO" 	additivity="false" />
+	
+	<root level="INFO">
+		<!--  <appender-ref ref="stdout" />  -->
+		<appender-ref ref="debugFile" />
+	 	<appender-ref ref="infoFile" />	 
+		<appender-ref ref="errorFile" />
+		<appender-ref ref="userFile" />
+	</root>
+</configuration>
+
